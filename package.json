@@ -1,0 +1,20 @@
+{
+  "name": "asd",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "update": "node_modules\\.bin\\webdriver-manager update",
+    "e2e": "node_modules\\.bin\\protractor config.js --tag "
+  },
+  "dependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "cucumber": "^3.2.1",
+    "protractor": "^5.2.2",
+    "protractor-cucumber-framework": "^4.1.1",
+    "yargs": "^9.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^3.13.1"
+  }
+}

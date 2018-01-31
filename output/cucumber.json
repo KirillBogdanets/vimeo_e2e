@@ -1,0 +1,855 @@
+[
+  {
+    "keyword": "Feature",
+    "name": "Smoke Tests",
+    "line": 2,
+    "id": "smoke-tests",
+    "tags": [
+      {
+        "name": "@smoke",
+        "line": 1
+      }
+    ],
+    "uri": "features\\smoke.feature",
+    "elements": [
+      {
+        "id": "smoke-tests;verify-that-some-elements-will-resize,-floating-or-disappear-after-scrolling-to-the-bottom",
+        "keyword": "Scenario",
+        "line": 6,
+        "name": "Verify that some elements will resize, floating or disappear after scrolling to the bottom",
+        "tags": [
+          {
+            "name": "@smoke",
+            "line": 1
+          },
+          {
+            "name": "@scrolling",
+            "line": 4
+          },
+          {
+            "name": "@prepearedStatementForHomePage",
+            "line": 5
+          }
+        ],
+        "type": "scenario",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "match": {
+              "location": "step_definitions\\hooks.js:8"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4830
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 7,
+            "name": "I am on Main page",
+            "match": {
+              "location": "step_definitions\\index.js:11"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 61
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 8,
+            "name": "I am logged in as \"bogdanetskirill@gmail.com\" with \"qweasdzxc123\" password",
+            "match": {
+              "location": "step_definitions\\index.js:15"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 911
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 9,
+            "name": "I wait 4 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 4001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 10,
+            "name": "I wait until \"WholeHeader\" on StartScreen is visible",
+            "match": {
+              "location": "step_definitions\\index.js:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 68
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 11,
+            "name": "I remember \"WholeHeader\" element size on StartScreen as \"HeaderSize\"",
+            "match": {
+              "location": "step_definitions\\index.js:123"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 21
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 12,
+            "name": "\"UserAvatar\" on StartScreen should be visible",
+            "match": {
+              "location": "step_definitions\\index.js:34"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 48
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 13,
+            "name": "\"CameoLogo\" on StartScreen should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 14,
+            "name": "Text of \"Tagline\" element on StartScreen should be equal to \"EDIt AND SHARE CINEMATIc ViDEOS ON YOUR PHONE\" ignoring case",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 33
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 15,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1002
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 16,
+            "name": "\"DownloadCameoButton\" on StartScreen should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 51
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "\"DownloadBox\" on HomePage should not be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 54
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 19,
+            "name": "I scroll down page by 400 pixels",
+            "match": {
+              "location": "step_definitions\\index.js:94"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 8
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I remember \"WholeHeader\" element size on StartScreen as \"HeaderSize1\"",
+            "match": {
+              "location": "step_definitions\\index.js:123"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 21,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1002
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 22,
+            "name": "Remembered value as \"HeaderSize\" should be bigger then \"HeaderSize1\"",
+            "match": {
+              "location": "step_definitions\\index.js:142"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 23,
+            "name": "I scroll down page by 400 pixels",
+            "match": {
+              "location": "step_definitions\\index.js:94"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 12
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 24,
+            "name": "I remember \"WholeHeader\" element size on StartScreen as \"HeaderSize2\"",
+            "match": {
+              "location": "step_definitions\\index.js:123"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 49
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 25,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 26,
+            "name": "Remembered value as \"HeaderSize1\" should be bigger then \"HeaderSize2\"",
+            "match": {
+              "location": "step_definitions\\index.js:142"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 27,
+            "name": "I scroll down page by 100 pixels",
+            "match": {
+              "location": "step_definitions\\index.js:94"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 15
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 28,
+            "name": "I remember \"HomeTaglineZone\" element size on HomePage as \"HomePageTagLine\"",
+            "match": {
+              "location": "step_definitions\\index.js:123"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 43
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 29,
+            "name": "I scroll down page by 50 pixels",
+            "match": {
+              "location": "step_definitions\\index.js:94"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 42
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 30,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 31,
+            "name": "\"HomeTaglineZone\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 32,
+            "name": "Text of \"HomeTagline\" element on HomePage should be equal to \"Turn your video clips into gorgeous short films in just a few swipes. All you need is an iPhone and the free Cameo app.\"",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 34
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 33,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 34,
+            "name": "\"PhonePicture\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 31
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 35,
+            "name": "I remember \"HomeTaglineZone\" element size on HomePage as \"HomePageTagLine1\"",
+            "match": {
+              "location": "step_definitions\\index.js:123"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 17
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 36,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 37,
+            "name": "Remembered value as \"HomePageTagLine\" should be smaller then \"HomePageTagLine1\"",
+            "match": {
+              "location": "step_definitions\\index.js:142"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 38,
+            "name": "I scroll down page by 100 pixels",
+            "match": {
+              "location": "step_definitions\\index.js:94"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 9
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 39,
+            "name": "\"AdvantagesBox\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 32
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "line": 40,
+            "name": "I scroll to the \"ThemeText\" element on HomePage",
+            "match": {
+              "location": "step_definitions\\index.js:78"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 49
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 41,
+            "name": "I wait until \"ThemeText\" on HomePage is visible",
+            "match": {
+              "location": "step_definitions\\index.js:19"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 46
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 42,
+            "name": "\"ThemeText\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 43,
+            "name": "\"PhonePicture\" on HomePage should not be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 29
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 44,
+            "name": "Text of \"ThemeText\" element on HomePage should be equal to \"Treehouse\" ignoring case",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 30
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 45,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 46,
+            "name": "I click \"RightArrowButton\" element on HomePage page",
+            "match": {
+              "location": "step_definitions\\index.js:146"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 71
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 47,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 48,
+            "name": "Text of \"ThemeText\" element on HomePage should be equal to \"Silhouette\" ignoring case",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 22
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 49,
+            "name": "I click \"LeftArrowButton\" element on HomePage page",
+            "match": {
+              "location": "step_definitions\\index.js:146"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 72
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 50,
+            "name": "I wait 1 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1001
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 51,
+            "name": "Text of \"ThemeText\" element on HomePage should be equal to \"Treehouse\" ignoring case",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 23
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 52,
+            "name": "I scroll to the \"SoundtracksBox\" element on HomePage",
+            "match": {
+              "location": "step_definitions\\index.js:78"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 53,
+            "name": "\"SoundtracksContent\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 72
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 54,
+            "name": "\"ThemeText\" on HomePage should not be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 52
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 55,
+            "name": "I scroll to the \"VideosBox\" element on HomePage",
+            "match": {
+              "location": "step_definitions\\index.js:78"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 37
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 56,
+            "name": "\"VideosList\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 80
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 57,
+            "name": "\"SoundtracksContent\" on HomePage should not be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 58,
+            "name": "I wait 2 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2015
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 59,
+            "name": "Text of \"WatchMoreButton\" element on HomePage should be equal to \"WATCH MORE\"",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 67
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 60,
+            "name": "I scroll to the \"CreatorsBox\" element on HomePage",
+            "match": {
+              "location": "step_definitions\\index.js:78"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 93
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 61,
+            "name": "\"ExploreMoreButton\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 40
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 62,
+            "name": "\"VideosList\" on HomePage should not be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 28
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 63,
+            "name": "I wait 2 seconds",
+            "match": {
+              "location": "step_definitions\\index.js:29"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2055
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 64,
+            "name": "Text of \"ExploreMoreButton\" element on HomePage should be equal to \"EXPLORE MORE\"",
+            "match": {
+              "location": "step_definitions\\index.js:98"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 65,
+            "name": "I scroll to the \"DownloadBox\" element on HomePage",
+            "match": {
+              "location": "step_definitions\\index.js:78"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 36
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 66,
+            "name": "\"DownloadOnAppleStoreButton\" on HomePage should be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 35
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 67,
+            "name": "\"ExploreMoreButton\" on HomePage should not be in viewport",
+            "match": {
+              "location": "step_definitions\\index.js:74"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 25
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "match": {
+              "location": "step_definitions\\hooks.js:12"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1
+            }
+          }
+        ]
+      }
+    ]
+  }
+]
