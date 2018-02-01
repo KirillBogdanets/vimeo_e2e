@@ -82,7 +82,7 @@ Feature: Smoke Tests
       And "ShortDescriptionText" on ItunesCameoPage should be visible
       And Text of "ShortDescriptionText" element on ItunesCameoPage should be equal to "Cameo - Video Editor and Movie Maker 4+"
     Then I scroll down page by 1100 pixels
-      And I wait 1 seconds
+      And I wait 2 seconds
       And "AppsInformation" on ItunesCameoPage should be in viewport
       And I wait 2 seconds
       And Text of #"1" element of "Categories" collection on ItunesCameoPage should be equal to "Vimeo"

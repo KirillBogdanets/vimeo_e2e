@@ -2,9 +2,9 @@
 
 const StartScreenHeader = require("./startScreenHeader");
 
-class StartScreenPage extends StartScreenHeader {
+class StartScreenPage {
 	constructor (){
-        super();
+        Object.assign(this, new StartScreenHeader());
         this.Tagline = element(by.css(".tagline"));
 		this.CameoLogo = element(by.css(".logo"));
 		this.DownloadCameoButton = element(by.css(".button.download"));

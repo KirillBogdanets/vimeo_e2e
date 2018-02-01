@@ -2,9 +2,9 @@
 
 const Header = require("./header");
 
-class HomePage extends Header {
+class HomePage {
 	constructor (){
-		super();
+        Object.assign(this, new Header());
 
 		this.HomeTaglineZone = element(by.css("#phone .inner header"));
 		this.HomeTagline = element(by.css("#phone .inner header p"));
