@@ -5,6 +5,7 @@ const world = require('../po/world');
 const EC = protractor.ExpectedConditions;
 const consts = require("../consts/common.consts.json");
 const DEFAULT_STEP_TIMEOUT = 30 * 1000;
+let sizesArray = [];
 
 const login = (userName, password) => {
 	return world.StartScreenHomePage.LoginButton.click().then(() => {
@@ -36,23 +37,27 @@ const inViewPortHelper = (coordinates, shouldNotBe) => {
     });
 };
 const isInViewPort = (element, homeElement, shouldNotBe) => {
-    if (homeElement === "StartScreen") {
-        return world.StartScreenHomePage[`${element}`].getLocation().then((coordinates) => {
-            return inViewPortHelper(coordinates, shouldNotBe);
-        });
-    } else if (homeElement === "HomePage") {
-        return world.HomePage[`${element}`].getLocation().then((coordinates) => {
-            return inViewPortHelper(coordinates, shouldNotBe);
-        });
-    } else {
-        return world.ItunesCameoPage[`${element}`].getLocation().then((coordinates) => {
-            return inViewPortHelper(coordinates, shouldNotBe);
-        });
+    switch (homeElement) {
+        case "StartScreen":
+            return world.StartScreenHomePage[`${element}`].getLocation().then((coordinates) => {
+                return inViewPortHelper(coordinates, shouldNotBe);
+            });
+            break;
+        case "HomePage":
+            return world.HomePage[`${element}`].getLocation().then((coordinates) => {
+                return inViewPortHelper(coordinates, shouldNotBe);
+            });
+            break;
+        case "ItunesCameoPage":
+            return world.ItunesCameoPage[`${element}`].getLocation().then((coordinates) => {
+                return inViewPortHelper(coordinates, shouldNotBe);
+            });
+            break;
     }
 };
 
-const sizeHelper = (firstValue, expected, secondValue, array) => {
-    array.map((value) => {
+const sizeHelper = (firstValue, expected, secondValue) => {
+    sizesArray.map((value) => {
         if (value.startsWith(`${firstValue}-`)) {
             firstValue = value.split("-")[1];
         } else if (value.startsWith(`${secondValue}-`)) {
@@ -77,12 +82,150 @@ const sizeHelper = (firstValue, expected, secondValue, array) => {
 	}
 };
 
-const visabilityOf = () => {
+const visibilityOf = (element, page, shouldNotBe) => {
+    if (shouldNotBe) {
+        switch (page) {
+            case "StartScreen":
+                return browser.wait(EC.invisibilityOf(world.StartScreenHomePage[`${element}`]), 2000);
+                break;
+            case "HomePage":
+                return browser.wait(EC.invisibilityOf(world.HomePage[`${element}`]), 2000);
+                break;
+            case "ItunesCameoPage":
+                return browser.wait(EC.invisibilityOf(world.ItunesCameoPage[`${element}`]), 2000);
+                break;
+        }
+    } else {
+        switch (page) {
+            case "StartScreen":
+                return browser.wait(EC.visibilityOf(world.StartScreenHomePage[`${element}`]), 2000);
+                break;
+            case "HomePage":
+                return browser.wait(EC.visibilityOf(world.HomePage[`${element}`]), 2000);
+                break;
+            case "ItunesCameoPage":
+                return browser.wait(EC.visibilityOf(world.ItunesCameoPage[`${element}`]), 2000);
+                break;
+        }
+    }
+};
 
+const scrollToTheElementHelper = (element, homeElement) => {
+    switch (homeElement) {
+        case "StartScreen":
+            return world.StartScreenHomePage[`${element}`].getLocation().then((location) => {
+                return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
+            });
+            break;
+        case "HomePage":
+            return world.HomePage[`${element}`].getLocation().then((location) => {
+                return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
+            });
+            break;
+        case "ItunesCameoPage":
+            return world.ItunesCameoPage[`${element}`].getLocation().then((location) => {
+                return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
+            });
+            break;
+    }
+};
+
+const isTextsEquals = (element, homeElement, givenText, ignoringCase) => {
+    if (ignoringCase){
+        switch (homeElement) {
+            case "StartScreen":
+                return world.StartScreenHomePage[`${element}`].getText().then((text) => {
+                    return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
+                });
+                break;
+            case "HomePage":
+                return world.HomePage[`${element}`].getText().then((text) => {
+                    return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
+                });
+                break;
+            case "ItunesCameoPage":
+                return world.ItunesCameoPage[`${element}`].getText().then((text) => {
+                    return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
+                });
+                break;
+        }
+    } else {
+        switch (homeElement) {
+            case "StartScreen":
+                return world.StartScreenHomePage[`${element}`].getText().then((text) => {
+                    return expect(text).to.equal(givenText);
+                });
+                break;
+            case "HomePage":
+                return world.HomePage[`${element}`].getText().then((text) => {
+                    return expect(text).to.equal(givenText);
+                });
+                break;
+            case "ItunesCameoPage":
+                return world.ItunesCameoPage[`${element}`].getText().then((text) => {
+                    return expect(text).to.equal(givenText);
+                });
+                break;
+        }
+    }
+};
+
+const sizeRemember = (element, homeElement, saveAs) => {
+    switch (homeElement) {
+        case "StartScreen":
+            return world.StartScreenHomePage[`${element}`].getAttribute("style").then((value) => {
+                let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
+                return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
+            });
+            break;
+        case "HomePage":
+            return world.HomePage[`${element}`].getAttribute("style").then((value) => {
+                let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
+                return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
+            });
+            break;
+        case "ItunesCameoPage":
+            return world.ItunesCameoPage[`${element}`].getAttribute("style").then((value) => {
+                let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
+                return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
+            });
+            break;
+    }
+};
+
+const collectionTextWorker = (number, collection, homeElement, givenText) => {
+    switch (homeElement) {
+        case "StartScreen":
+            return world.StartScreenHomePage[`${collection}`].then((item) => {
+                return item[`${parseFloat(number)-1}`].getText().then((text) => {
+                    return expect(text).to.equal(givenText);
+                });
+            });
+            break;
+        case "HomePage":
+            return world.HomePage[`${collection}`].then((item) => {
+                return item[`${parseFloat(number)-1}`].getText().then((text) => {
+                    return expect(text).to.equal(givenText);
+                });
+            });
+            break;
+        case "ItunesCameoPage":
+            return world.ItunesCameoPage[`${collection}`].then((item) => {
+                return item[`${parseFloat(number)-1}`].getText().then((text) => {
+                    return expect(text).to.equal(givenText);
+                });
+            });
+            break;
+    }
 };
 
 module.exports = {
 	login,
-	isInViewPort: isInViewPort,
-    sizeHelper
+	isInViewPort,
+    sizeHelper,
+    visibilityOf,
+    scrollToTheElementHelper,
+    isTextsEquals,
+    sizeRemember,
+    collectionTextWorker
 };

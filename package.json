@@ -3,8 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "update": "node_modules\\.bin\\webdriver-manager update",
-    "e2e": "node_modules\\.bin\\protractor config.js --tag "
+    "update": "webdriver-manager update",
+    "e2e": "protractor config.js --tag "
   },
   "dependencies": {
     "chai": "^4.1.2",

@@ -6,7 +6,7 @@ setDefaultTimeout(60 * 1000);
 const fs = require('fs');
 
 Before({tags: "@prepearedStatementForHomePage"}, () => {
-    return browser.get("https://vimeo.com/cameo");
+    return browser.get(browser.baseUrl);
 });
 
 After((testCase) => {

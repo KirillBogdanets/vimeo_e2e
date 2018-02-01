@@ -6,7 +6,6 @@ const utils = require("./utils");
 const EC = protractor.ExpectedConditions;
 let {Then, When, Given} = require('cucumber');
 const DEFAULT_STEP_TIMEOUT = 30 * 1000;
-let sizesArray = [];
 
 Given(/^I am on Main page$/, () => {
 	return browser.wait(EC.visibilityOf(world.StartScreenHomePage.WholeHeader), DEFAULT_STEP_TIMEOUT);
@@ -32,43 +31,7 @@ Then(/^I wait (\d+) seconds$/, (number) => {
 });
 
 Then(/^"([^"]*)" on (StartScreen|HomePage|ItunesCameoPage) should( not)? be visible$/, (element, homeElement, shouldNotBe) => {
-    if (homeElement === "StartScreen") {
-        if (shouldNotBe) {
-            return browser.wait(
-                EC.invisibilityOf(world.StartScreenHomePage[`${element}`]),
-                2000
-            );
-        } else {
-            return browser.wait(
-                EC.visibilityOf(world.StartScreenHomePage[`${element}`]),
-                2000
-            );
-        }
-	} else if (homeElement === "HomePage") {
-        if (shouldNotBe) {
-            return browser.wait(
-                EC.invisibilityOf(world.HomePage[`${element}`]),
-                2000
-            );
-        } else {
-            return browser.wait(
-                EC.visibilityOf(world.HomePage[`${element}`]),
-                2000
-            );
-        }
-    } else {
-        if (shouldNotBe) {
-            return browser.wait(
-                EC.invisibilityOf(world.ItunesCameoPage[`${element}`]),
-                2000
-            );
-        } else {
-            return browser.wait(
-                EC.visibilityOf(world.ItunesCameoPage[`${element}`]),
-                2000
-            );
-        }
-    }
+    return utils.visibilityOf(element, homeElement, shouldNotBe);
 });
 
 Then(/^"([^"]*)" on (StartScreen|HomePage|ItunesCameoPage) should( not)? be in viewport$/, (element, homeElement, shouldNotBe) => {
@@ -76,19 +39,7 @@ Then(/^"([^"]*)" on (StartScreen|HomePage|ItunesCameoPage) should( not)? be in v
 });
 
 Then(/^I scroll to the "([^"]*)" element on (StartScreen|HomePage|ItunesCameoPage)$/, (element, homeElement) => {
-    if (homeElement === "StartScreen") {
-        return world.StartScreenHomePage[`${element}`].getLocation().then((location) => {
-            return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
-        });
-    } else if (homeElement === "HomePage") {
-        return world.HomePage[`${element}`].getLocation().then((location) => {
-            return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
-        });
-    } else {
-        return world.ItunesCameoPage[`${element}`].getLocation().then((location) => {
-            return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
-        });
-    }
+    return utils.scrollToTheElementHelper(element, homeElement);
 });
 
 When(/^I scroll down page by (\d+) pixels$/, (pixels) => {
@@ -96,51 +47,15 @@ When(/^I scroll down page by (\d+) pixels$/, (pixels) => {
 });
 
 Then(/Text of "([^"]*)" element on (StartScreen|HomePage|ItunesCameoPage) should be equal to "([^"]*)"( ignoring case)?$/, (element, homeElement, givenText, ignoringCase) => {
-    if (homeElement === "StartScreen") {
-        return world.StartScreenHomePage[`${element}`].getText().then((text) => {
-            if (ignoringCase) {
-                return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
-            }
-            return expect(text).to.equal(givenText);
-        });
-    } else if (homeElement === "HomePage") {
-        return world.HomePage[`${element}`].getText().then((text) => {
-            if (ignoringCase) {
-                return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
-            }
-            return expect(text).to.equal(givenText);
-        });
-    } else {
-        return world.ItunesCameoPage[`${element}`].getText().then((text) => {
-            if (ignoringCase) {
-                return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
-            }
-            return expect(text).to.equal(givenText);
-        });
-    }
+    return utils.isTextsEquals(element, homeElement, givenText, ignoringCase);
 });
 
 When(/I remember "([^"]*)" element size on (StartScreen|HomePage|ItunesCameoPage) as "([^"]*)"$/, (element, homeElement, saveAs) => {
-    if (homeElement === "StartScreen") {
-        return world.StartScreenHomePage[`${element}`].getAttribute("style").then((value) => {
-            let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
-            return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
-        });
-    } else if (homeElement === "HomePage") {
-        return world.HomePage[`${element}`].getAttribute("style").then((value) => {
-            let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
-            return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
-        });
-    } else {
-        return world.ItunesCameoPage[`${element}`].getAttribute("style").then((value) => {
-            let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
-            return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
-        });
-    }
+    return utils.sizeRemember(element, homeElement, saveAs);
 });
 
 Then(/Remembered value as "([^"]*)" should be (bigger then|smaller then|different then|equal to) "([^"]*)"$/, (firstValue, expected, secondValue) => {
-    return utils.sizeHelper(firstValue, expected, secondValue, sizesArray);
+    return utils.sizeHelper(firstValue, expected, secondValue);
 });
 
 Then(/I click "([^"]*)" element on (StartScreen|HomePage|ItunesCameoPage) page$/, (element, homeElement) => {
@@ -154,25 +69,7 @@ Then(/I click "([^"]*)" element on (StartScreen|HomePage|ItunesCameoPage) page$/
 });
 
 Then(/Text of #"([^"]*)" element of "([^"]*)" collection on (StartScreen|HomePage|ItunesCameoPage) should be equal to "([^"]*)"$/, (number, collection, homeElement, givenText) => {
-    if (homeElement === "ItunesCameoPage") {
-        return world.ItunesCameoPage[`${collection}`].then((item) => {
-            return item[`${parseFloat(number)-1}`].getText().then((text) => {
-                return expect(text).to.equal(givenText);
-            });
-        });
-    } else if (homeElement === "HomePage") {
-        return world.HomePage[`${collection}`].then((item) => {
-            return item[`${parseFloat(number)-1}`].getText().then((text) => {
-                return expect(text).to.equal(givenText);
-            });
-        });
-    } else {
-        return world.StartScreenHomePage[`${collection}`].then((item) => {
-            return item[`${parseFloat(number)-1}`].getText().then((text) => {
-                return expect(text).to.equal(givenText);
-            });
-        });
-    }
+    return utils.collectionTextWorker(number, collection, homeElement, givenText);
 });
 
 
