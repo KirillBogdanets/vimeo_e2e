@@ -4,19 +4,29 @@ const yargs = require("yargs").argv;
 const reporter = require('cucumber-html-reporter');
 
 exports.config = {
-    directConnect: true,
-    
-    baseUrl: 'https://vimeo.com/cameo',
-    capabilities: {
-        browserName: 'chrome',
-        version: "63.0.3239.132"
-    },
+    directConnect: true,                                  //
+                                                          //
+    baseUrl: 'https://vimeo.com/cameo',                   //
+    capabilities: {                                       //   You need to comment that if you want to run mobile e2e tests
+        browserName: 'chrome',                            //
+        version: "63.0.3239.132"                          //
+    },                                                    //
+
+    // seleniumAddress: 'http://localhost:4723/wd/hub',          //
+    // baseUrl: 'http://localhost:8000',                         //
+    // capabilities: {                                           //
+    //     browserName: 'chrome',                                //
+    //     platformName: 'Android',                              //   You need to comment that if you want to run non-mobile e2e tests
+    //     platformVersion: '5.1',                               //
+    //     deviceName: 'MX4',                                    //
+    // },
+
     specs: [
         './features/**.feature'
     ],
     onPrepare: function () {
         browser.ignoreSynchronization = true;
-        browser.driver.manage().window().maximize(); 
+        browser.driver.manage().window().maximize();        //   You also need to comment that if you want to run mobile e2e tests
     },
     onComplete: function() {
         let options = {

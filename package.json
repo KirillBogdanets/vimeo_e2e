@@ -4,7 +4,10 @@
   "description": "",
   "scripts": {
     "update": "webdriver-manager update",
-    "e2e": "protractor config.js --tag "
+    "update-android": "webdriver-manager update --android-accept-licenses",
+    "e2e": "protractor config.js --tag",
+    "pre-e2e": "start cmd /k webdriver-manager start --android",
+    "e2e-android": "webdriver-manager start --android"
   },
   "dependencies": {
     "chai": "^4.1.2",

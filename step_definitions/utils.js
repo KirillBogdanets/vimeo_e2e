@@ -4,8 +4,9 @@ const expect = require('chai').expect;
 const world = require('../po/world');
 const EC = protractor.ExpectedConditions;
 const consts = require("../consts/common.consts.json");
-const DEFAULT_STEP_TIMEOUT = 30 * 1000;
+const DEFAULT_STEP_TIMEOUT = 60 * 1000;
 let sizesArray = [];
+const parser = require('./poParser');
 
 const login = (userName, password) => {
 	return world.StartScreenHomePage.LoginButton.click().then(() => {
@@ -36,24 +37,10 @@ const inViewPortHelper = (coordinates, shouldNotBe) => {
         });
     });
 };
-const isInViewPort = (element, homeElement, shouldNotBe) => {
-    switch (homeElement) {
-        case "StartScreen":
-            return world.StartScreenHomePage[`${element}`].getLocation().then((coordinates) => {
-                return inViewPortHelper(coordinates, shouldNotBe);
-            });
-            break;
-        case "HomePage":
-            return world.HomePage[`${element}`].getLocation().then((coordinates) => {
-                return inViewPortHelper(coordinates, shouldNotBe);
-            });
-            break;
-        case "ItunesCameoPage":
-            return world.ItunesCameoPage[`${element}`].getLocation().then((coordinates) => {
-                return inViewPortHelper(coordinates, shouldNotBe);
-            });
-            break;
-    }
+const isInViewPort = (element, shouldNotBe) => {
+    return parser.parser(element).getLocation().then((coordinates) => {
+        return inViewPortHelper(coordinates, shouldNotBe);
+    });
 };
 
 const sizeHelper = (firstValue, expected, secondValue) => {
@@ -82,141 +69,45 @@ const sizeHelper = (firstValue, expected, secondValue) => {
 	}
 };
 
-const visibilityOf = (element, page, shouldNotBe) => {
+const visibilityOf = (element, shouldNotBe) => {
     if (shouldNotBe) {
-        switch (page) {
-            case "StartScreen":
-                return browser.wait(EC.invisibilityOf(world.StartScreenHomePage[`${element}`]), 2000);
-                break;
-            case "HomePage":
-                return browser.wait(EC.invisibilityOf(world.HomePage[`${element}`]), 2000);
-                break;
-            case "ItunesCameoPage":
-                return browser.wait(EC.invisibilityOf(world.ItunesCameoPage[`${element}`]), 2000);
-                break;
-        }
+        return browser.wait(EC.invisibilityOf(parser.parser(element)), 2000);
     } else {
-        switch (page) {
-            case "StartScreen":
-                return browser.wait(EC.visibilityOf(world.StartScreenHomePage[`${element}`]), 2000);
-                break;
-            case "HomePage":
-                return browser.wait(EC.visibilityOf(world.HomePage[`${element}`]), 2000);
-                break;
-            case "ItunesCameoPage":
-                return browser.wait(EC.visibilityOf(world.ItunesCameoPage[`${element}`]), 2000);
-                break;
-        }
+        return browser.wait(EC.visibilityOf(parser.parser(element)), 2000);
     }
 };
 
-const scrollToTheElementHelper = (element, homeElement) => {
-    switch (homeElement) {
-        case "StartScreen":
-            return world.StartScreenHomePage[`${element}`].getLocation().then((location) => {
-                return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
-            });
-            break;
-        case "HomePage":
-            return world.HomePage[`${element}`].getLocation().then((location) => {
-                return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
-            });
-            break;
-        case "ItunesCameoPage":
-            return world.ItunesCameoPage[`${element}`].getLocation().then((location) => {
-                return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
-            });
-            break;
-    }
+const scrollToTheElementHelper = (element) => {
+    return parser.parser(element).getLocation().then((location) => {
+        return browser.executeScript(`window.scrollTo(0, "${location.y}");`);
+    });
 };
 
-const isTextsEquals = (element, homeElement, givenText, ignoringCase) => {
+const isTextsEquals = (element, givenText, ignoringCase) => {
     if (ignoringCase){
-        switch (homeElement) {
-            case "StartScreen":
-                return world.StartScreenHomePage[`${element}`].getText().then((text) => {
-                    return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
-                });
-                break;
-            case "HomePage":
-                return world.HomePage[`${element}`].getText().then((text) => {
-                    return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
-                });
-                break;
-            case "ItunesCameoPage":
-                return world.ItunesCameoPage[`${element}`].getText().then((text) => {
-                    return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
-                });
-                break;
-        }
+        return parser.parser(element).getText().then((text) => {
+            return expect(text.toLowerCase()).to.equal(givenText.toLowerCase());
+        });
     } else {
-        switch (homeElement) {
-            case "StartScreen":
-                return world.StartScreenHomePage[`${element}`].getText().then((text) => {
-                    return expect(text).to.equal(givenText);
-                });
-                break;
-            case "HomePage":
-                return world.HomePage[`${element}`].getText().then((text) => {
-                    return expect(text).to.equal(givenText);
-                });
-                break;
-            case "ItunesCameoPage":
-                return world.ItunesCameoPage[`${element}`].getText().then((text) => {
-                    return expect(text).to.equal(givenText);
-                });
-                break;
-        }
+        return parser.parser(element).getText().then((text) => {
+            return expect(text).to.equal(givenText);
+        });
     }
 };
 
-const sizeRemember = (element, homeElement, saveAs) => {
-    switch (homeElement) {
-        case "StartScreen":
-            return world.StartScreenHomePage[`${element}`].getAttribute("style").then((value) => {
-                let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
-                return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
-            });
-            break;
-        case "HomePage":
-            return world.HomePage[`${element}`].getAttribute("style").then((value) => {
-                let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
-                return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
-            });
-            break;
-        case "ItunesCameoPage":
-            return world.ItunesCameoPage[`${element}`].getAttribute("style").then((value) => {
-                let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
-                return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
-            });
-            break;
-    }
+const sizeRemember = (element, saveAs) => {
+    return parser.parser(element).getAttribute("style").then((value) => {
+        let opacityValue = value.slice(value.indexOf('opacity:'), value.indexOf(';'));
+        return sizesArray.push(`${saveAs}-${opacityValue.match(/\d+/g)}`);
+    });
 };
 
-const collectionTextWorker = (number, collection, homeElement, givenText) => {
-    switch (homeElement) {
-        case "StartScreen":
-            return world.StartScreenHomePage[`${collection}`].then((item) => {
-                return item[`${parseFloat(number)-1}`].getText().then((text) => {
-                    return expect(text).to.equal(givenText);
-                });
-            });
-            break;
-        case "HomePage":
-            return world.HomePage[`${collection}`].then((item) => {
-                return item[`${parseFloat(number)-1}`].getText().then((text) => {
-                    return expect(text).to.equal(givenText);
-                });
-            });
-            break;
-        case "ItunesCameoPage":
-            return world.ItunesCameoPage[`${collection}`].then((item) => {
-                return item[`${parseFloat(number)-1}`].getText().then((text) => {
-                    return expect(text).to.equal(givenText);
-                });
-            });
-            break;
-    }
+const collectionTextWorker = (number, collection, givenText) => {
+    return parser.parser(collection).then((item) => {
+        return item[`${parseFloat(number)-1}`].getText().then((text) => {
+            return expect(text).to.equal(givenText);
+        });
+    });
 };
 
 module.exports = {
